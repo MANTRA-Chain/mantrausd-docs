@@ -1,0 +1,75 @@
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "theme": "aspen",
+  "name": "mantrausd-docs",
+  "colors": {
+    "primary": "#FF97D6",
+    "light": "#FF97D6",
+    "dark": "#FF97D6"
+  },
+  "favicon": "/favicon.svg",
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Guides",
+        "groups": [
+          {
+            "group": "Getting started",
+            "pages": [
+              "index"
+            ]
+          }
+        ]
+      }
+    ],
+    "global": {
+      "anchors": [
+        {
+          "anchor": "mantraUSD on Lotus Dex",
+          "href": "https://app.lotusdex.io/swap",
+          "icon": "money-bill-trend-up"
+        },
+        {
+          "anchor": "mantraUSD on Quickswap",
+          "href": "https://dapp.quickswap.exchange/swap/v4/ETH/0xd2b95283011E47257917770D28Bb3EE44c849f6F?chainId=5888",
+          "icon": "swap"
+        }
+      ]
+    }
+  },
+  "logo": {
+    "light": "/logo/light.svg",
+    "dark": "/logo/dark.svg"
+  },
+  "navbar": {
+    "links": [
+      {
+        "label": "Contact Us",
+        "href": "mailto:contact@mantrausd.com"
+      }
+    ],
+    "primary": {
+      "type": "button",
+      "label": "Home",
+      "href": "https://mantrausd.com"
+    }
+  },
+  "contextual": {
+    "options": [
+      "copy",
+      "view",
+      "chatgpt",
+      "claude",
+      "perplexity",
+      "mcp",
+      "cursor",
+      "vscode"
+    ]
+  },
+  "footer": {
+    "socials": {
+      "x": "https://x.com/mantraUSD",
+      "github": "https://github.com/MANTRA-Chain/mantrausd-docs"
+    }
+  }
+}
