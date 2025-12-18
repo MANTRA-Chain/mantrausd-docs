@@ -30,7 +30,7 @@
           "icon": "money-bill-trend-up"
         },
         {
-          "anchor": "mantraUSD on Quickswap",
+          "anchor": "mantraUSD on QuickSwap",
           "href": "https://dapp.quickswap.exchange/swap/v4/ETH/0xd2b95283011E47257917770D28Bb3EE44c849f6F?chainId=5888",
           "icon": "swap"
         }
