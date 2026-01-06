@@ -1,0 +1,100 @@
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "name": "mantraUSD Documentation",
+  "theme": "mint",
+  "logo": {
+    "light": "/logo/light.svg",
+    "dark": "/logo/light.svg"
+  },
+  "appearance": {
+    "default": "light",
+    "strict": true
+  },
+  "favicon": "/favicon.svg",
+  "colors": {
+    "primary": "#0D9373",
+    "light": "#07C983",
+    "dark": "#0D9373"
+  },
+  "navbar": {
+    "links": [
+      {
+        "label": "Follow on X",
+        "href": "https://x.com/mantraUSD"
+      }
+    ],
+    "primary": {
+      "type": "button",
+      "label": "mantraUSD.com",
+      "href": "https://mantrausd.com"
+    }
+  },
+  "navigation": {
+    "global": {
+      "anchors": [
+        {
+          "anchor": "Get mantraUSD on LotusDEX",
+          "icon": "shuffle",
+          "href": "https://app.lotusdex.io/swap"
+        },
+        {
+          "anchor": "Get mantraUSD on QuickSwap",
+          "icon": "shuffle",
+          "href": "https://dapp.quickswap.exchange/swap/v4/ETH/0xd2b95283011E47257917770D28Bb3EE44c849f6F?chainId=5888"
+        }
+      ]
+    },
+    "tabs": [
+      {
+        "tab": "Learn About mantraUSD",
+        "icon": "book-open",
+        "href": "index",
+        "groups": [
+          {
+            "group": "Get Started",
+            "pages": [
+              "getting-started/quick-start",
+              "getting-started/checking-balance"
+            ]
+          },
+          {
+            "group": "How It Works",
+            "pages": [
+              "how-it-works/overview",
+              "how-it-works/minting-burning"
+            ]
+          },
+          {
+            "group": "Smart Contracts",
+            "pages": [
+              "smart-contracts/abi",
+              "smart-contracts/security"
+            ]
+          },
+          {
+            "group": "Integration",
+            "pages": [
+              "integration/overview",
+              "integration/web3",
+              "integration/examples"
+            ]
+          },
+          {
+            "group": "Resources",
+            "pages": [
+              "resources/whitepaper",
+              "resources/faq"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "footer": {
+    "socials": {
+      "twitter": "https://twitter.com/MANTRA_Chain",
+      "github": "https://github.com/MANTRA-Chain",
+      "discord": "https://discord.gg/mantra"
+    }
+  }
+}

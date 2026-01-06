@@ -1,0 +1,198 @@
+---
+title: Web3 Integration
+---
+
+## Web3 Integration Guide
+
+This guide shows how to integrate mantraUSD using popular Web3 libraries.
+
+## Contract Address
+
+**Address:** `0xd2b95283011E47257917770D28Bb3EE44c849f6F`
+
+[View on Blockscout](https://blockscout.mantrascan.io/address/0xd2b95283011E47257917770D28Bb3EE44c849f6F?tab=contract_code)
+
+## Using ethers.js
+
+### Installation
+
+```bash
+npm install ethers
+```
+
+### Setup
+
+```javascript
+import { ethers } from 'ethers';
+
+const contractAddress = '0xd2b95283011E47257917770D28Bb3EE44c849f6F';
+const abi = [
+  // Standard ERC-20 ABI
+  'function balanceOf(address) view returns (uint256)',
+  'function transfer(address to, uint256 amount) returns (bool)',
+  'function totalSupply() view returns (uint256)',
+];
+
+// Connect to provider
+const provider = new ethers.providers.JsonRpcProvider('YOUR_RPC_URL');
+const contract = new ethers.Contract(contractAddress, abi, provider);
+```
+
+### Check Balance
+
+```javascript
+async function getBalance(address) {
+  const balance = await contract.balanceOf(address);
+  return ethers.utils.formatEther(balance);
+}
+
+const userBalance = await getBalance('0x...');
+console.log('mantraUSD Balance:', userBalance);
+```
+
+### Transfer Tokens
+
+```javascript
+// Connect with signer for write operations
+const signer = provider.getSigner();
+const contractWithSigner = contract.connect(signer);
+
+async function transferTokens(to, amount) {
+  const tx = await contractWithSigner.transfer(
+    to,
+    ethers.utils.parseEther(amount.toString())
+  );
+  await tx.wait();
+  console.log('Transfer complete!');
+}
+```
+
+## Using web3.js
+
+### Installation
+
+```bash
+npm install web3
+```
+
+### Setup
+
+```javascript
+import Web3 from 'web3';
+
+const web3 = new Web3('YOUR_RPC_URL');
+const contractAddress = '0xd2b95283011E47257917770D28Bb3EE44c849f6F';
+const abi = [/* ABI array */];
+
+const contract = new web3.eth.Contract(abi, contractAddress);
+```
+
+### Check Balance
+
+```javascript
+async function getBalance(address) {
+  const balance = await contract.methods.balanceOf(address).call();
+  return web3.utils.fromWei(balance, 'ether');
+}
+
+const userBalance = await getBalance('0x...');
+console.log('mantraUSD Balance:', userBalance);
+```
+
+### Transfer Tokens
+
+```javascript
+async function transferTokens(from, to, amount, privateKey) {
+  const account = web3.eth.accounts.privateKeyToAccount(privateKey);
+  web3.eth.accounts.wallet.add(account);
+  
+  const tx = contract.methods.transfer(
+    to,
+    web3.utils.toWei(amount.toString(), 'ether')
+  );
+  
+  const gas = await tx.estimateGas({ from: account.address });
+  const gasPrice = await web3.eth.getGasPrice();
+  
+  const data = tx.encodeABI();
+  const txData = {
+    from: account.address,
+    to: contractAddress,
+    data: data,
+    gas,
+    gasPrice,
+  };
+  
+  const receipt = await web3.eth.sendTransaction(txData);
+  console.log('Transfer complete!', receipt);
+}
+```
+
+## Using React with Web3
+
+### Setup with MetaMask
+
+```javascript
+import { useState, useEffect } from 'react';
+import { ethers } from 'ethers';
+
+function MantraUSDIntegration() {
+  const [balance, setBalance] = useState('0');
+  const [account, setAccount] = useState(null);
+  
+  const contractAddress = '0xd2b95283011E47257917770D28Bb3EE44c849f6F';
+  const abi = [/* ABI */];
+  
+  useEffect(() => {
+    async function connectWallet() {
+      if (window.ethereum) {
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const accounts = await provider.send('eth_requestAccounts', []);
+        setAccount(accounts[0]);
+        
+        const contract = new ethers.Contract(contractAddress, abi, provider);
+        const bal = await contract.balanceOf(accounts[0]);
+        setBalance(ethers.utils.formatEther(bal));
+      }
+    }
+    connectWallet();
+  }, []);
+  
+  return (
+    <div>
+      <p>Account: {account}</p>
+      <p>Balance: {balance} mantraUSD</p>
+    </div>
+  );
+}
+```
+
+## Error Handling
+
+```javascript
+async function safeTransfer(to, amount) {
+  try {
+    const tx = await contract.transfer(to, amount);
+    const receipt = await tx.wait();
+    return { success: true, receipt };
+  } catch (error) {
+    console.error('Transfer failed:', error);
+    return { success: false, error: error.message };
+  }
+}
+```
+
+## Best Practices
+
+1. **Always verify the contract address** before interacting
+2. **Handle errors gracefully** - network issues, insufficient funds, etc.
+3. **Estimate gas** before sending transactions
+4. **Show transaction status** to users
+5. **Validate inputs** before sending to the contract
+
+## Related Resources
+
+- [Code Examples](/integration/examples) - More integration examples
+- [Contract ABI](/smart-contracts/abi) - Complete function reference
+- [Security](/smart-contracts/security) - Security information
+

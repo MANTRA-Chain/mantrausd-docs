@@ -1,0 +1,26 @@
+---
+title: Checking Your Balance
+---
+
+## Checking Your Balance
+
+Here's a simple example of how to check your mantraUSD balance using Web3:
+
+```javascript
+const contractAddress = '0xd2b95283011E47257917770D28Bb3EE44c849f6F';
+const abi = [
+  {
+    constant: true,
+    inputs: [{ name: '_owner', type: 'address' }],
+    name: 'balanceOf',
+    outputs: [{ name: 'balance', type: 'uint256' }],
+    type: 'function'
+  }
+];
+
+// Using ethers.js
+const contract = new ethers.Contract(contractAddress, abi, provider);
+const balance = await contract.balanceOf(userAddress);
+console.log('mantraUSD Balance:', ethers.utils.formatEther(balance));
+```
+

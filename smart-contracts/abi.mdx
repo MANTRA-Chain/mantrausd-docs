@@ -1,0 +1,168 @@
+---
+title: Contract ABI
+---
+
+## Application Binary Interface (ABI)
+
+The ABI defines how to interact with the mantraUSD smart contract. This page provides the contract interface and function signatures.
+
+## Contract Address
+
+**Address:** `0xd2b95283011E47257917770D28Bb3EE44c849f6F`
+
+[View on Blockscout](https://blockscout.mantrascan.io/address/0xd2b95283011E47257917770D28Bb3EE44c849f6F?tab=contract_code)
+
+## Standard ERC-20 Functions
+
+### balanceOf
+
+Get the token balance of an address.
+
+```solidity
+function balanceOf(address account) external view returns (uint256)
+```
+
+**Parameters:**
+- `account` (address): The address to query
+
+**Returns:**
+- `uint256`: The token balance
+
+### totalSupply
+
+Get the total supply of mantraUSD tokens.
+
+```solidity
+function totalSupply() external view returns (uint256)
+```
+
+**Returns:**
+- `uint256`: The total token supply
+
+### transfer
+
+Transfer tokens to another address.
+
+```solidity
+function transfer(address to, uint256 amount) external returns (bool)
+```
+
+**Parameters:**
+- `to` (address): The recipient address
+- `amount` (uint256): The amount to transfer
+
+**Returns:**
+- `bool`: Success status
+
+### approve
+
+Approve another address to spend tokens on your behalf.
+
+```solidity
+function approve(address spender, uint256 amount) external returns (bool)
+```
+
+**Parameters:**
+- `spender` (address): The address authorized to spend
+- `amount` (uint256): The maximum amount that can be spent
+
+**Returns:**
+- `bool`: Success status
+
+### transferFrom
+
+Transfer tokens from one address to another (requires approval).
+
+```solidity
+function transferFrom(address from, address to, uint256 amount) external returns (bool)
+```
+
+**Parameters:**
+- `from` (address): The sender address
+- `to` (address): The recipient address
+- `amount` (uint256): The amount to transfer
+
+**Returns:**
+- `bool`: Success status
+
+### allowance
+
+Check the amount of tokens a spender is allowed to spend.
+
+```solidity
+function allowance(address owner, address spender) external view returns (uint256)
+```
+
+**Parameters:**
+- `owner` (address): The token owner address
+- `spender` (address): The spender address
+
+**Returns:**
+- `uint256`: The approved amount
+
+## Events
+
+### Transfer
+
+Emitted when tokens are transferred.
+
+```solidity
+event Transfer(address indexed from, address indexed to, uint256 value)
+```
+
+### Approval
+
+Emitted when an approval is set.
+
+```solidity
+event Approval(address indexed owner, address indexed spender, uint256 value)
+```
+
+## Custom Functions
+
+<Info>
+  The exact custom functions depend on the contract implementation. Check the verified contract source code on Blockscout for the complete ABI, or refer to the contract documentation.
+</Info>
+
+## Getting the Full ABI
+
+To get the complete ABI:
+
+1. Visit the contract on [Blockscout](https://blockscout.mantrascan.io/address/0xd2b95283011E47257917770D28Bb3EE44c849f6F?tab=contract_code)
+2. Navigate to the "Contract" tab
+3. Copy the ABI from the verified contract source
+
+## Usage Examples
+
+### Check Balance
+
+```javascript
+const contract = new ethers.Contract(
+  '0xd2b95283011E47257917770D28Bb3EE44c849f6F',
+  abi,
+  provider
+);
+
+const balance = await contract.balanceOf(userAddress);
+console.log('Balance:', ethers.utils.formatEther(balance));
+```
+
+### Transfer Tokens
+
+```javascript
+const signer = provider.getSigner();
+const contract = new ethers.Contract(
+  '0xd2b95283011E47257917770D28Bb3EE44c849f6F',
+  abi,
+  signer
+);
+
+const tx = await contract.transfer(recipientAddress, amount);
+await tx.wait();
+```
+
+## Related Resources
+
+- [Integration Guide](/integration/overview) - Integration examples
+- [Security](/smart-contracts/security) - Security information
+

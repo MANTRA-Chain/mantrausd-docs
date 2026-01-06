@@ -1,0 +1,105 @@
+---
+title: Minting & Burning
+---
+
+## Overview
+
+mantraUSD operates as an extension of **$M** (M0's base stablecoin). All minting and burning operations leverage M0's infrastructure, where M-denominated assets are locked on Ethereum and mantraUSD tokens are minted on MANTRA Chain via bridge technologies.
+
+## Minting mantraUSD
+
+Minting creates new mantraUSD tokens through M0's collateral system. All collateralization is handled by M0, which manages the underlying U.S. Treasury Bills that back mantraUSD.
+
+### How Minting Works
+
+1. **M0 Collateral Deposit**: User deposits are transformed into short-dated U.S. Treasury Bills via SPVs managed by M0
+2. **M-denominated Asset Lock**: M-denominated assets are locked on Ethereum through M0 Core Protocol
+3. **Cross-Chain Bridge**: Bridge technology (including Wormhole) enables cross-chain transfer
+4. **mantraUSD Minting**: mantraUSD tokens are minted on MANTRA Chain
+5. **Validator Attestation**: Validator nodes ensure continuous backing for all circulating supply
+
+### Minting Process
+
+```
+User Deposit → M0 Protocol → U.S. Treasury Bills (SPVs) → M Locked on Ethereum → Bridge → mantraUSD Minted on MANTRA Chain
+```
+
+### Mint Ratio
+
+The M0 Core Protocol maintains a **mint ratio** (safety factor >1) that ensures over-collateralization:
+- All mantraUSD supply is fully backed by U.S. Treasury collateral
+- The system maintains collateral value greater than total supply
+- Validators continuously monitor and attest to backing
+
+<Info>
+  The M0 Core Protocol ensures all tokens minted are always fully backed and redeemable at par. View real-time data on the [mantraUSD Dashboard](https://dashboard.m0.org/stablecoins/mantrausd).
+</Info>
+
+## Burning mantraUSD
+
+Burning destroys mantraUSD tokens to redeem the underlying collateral managed by M0.
+
+### How Burning Works
+
+1. **Burn Tokens**: Send mantraUSD tokens to be burned on MANTRA Chain
+2. **Bridge Unlock**: Bridge technology unlocks corresponding M-denominated assets on Ethereum
+3. **M0 Redemption**: M0 handles redemption of underlying U.S. Treasury collateral
+4. **Settlement**: Redemptions follow T+2 settlement timelines (consistent with U.S. Treasury market operations)
+
+### Burning Process
+
+```
+mantraUSD Burn on MANTRA Chain → Bridge → M Unlocked on Ethereum → M0 Redemption → Collateral Settlement (T+2)
+```
+
+### Redemption Access
+
+- **Direct Redemptions**: Available to authorized Minters meeting KYC/AML and compliance requirements
+- **Secondary Markets**: Most holders rely on secondary markets for liquidity
+- **Settlement Timeline**: T+2 settlement consistent with U.S. Treasury market operations
+
+<Warning>
+  Direct redemptions are generally available only to authorized institutional participants. Most users must rely on secondary markets where liquidity and pricing are not guaranteed.
+</Warning>
+
+## M0 Infrastructure
+
+All minting and burning operations rely on M0's infrastructure:
+
+- **M0 Core Protocol**: Ensures all tokens are fully backed and redeemable at par
+- **Collateral Management**: M0 manages all U.S. Treasury collateral in SPVs
+- **Validator Network**: Continuous monitoring and attestation of collateral
+- **Bridge Technology**: Secure cross-chain asset transfers
+
+## Fees and Costs
+
+Minting and burning may involve:
+
+- **M0 Protocol Fees**: Fees associated with M0's minting and redemption operations
+- **Bridge Fees**: Costs for cross-chain transfers
+- **Gas Fees**: Network transaction fees (paid in native tokens)
+- **Settlement Costs**: Associated with T+2 Treasury market settlement
+
+<Info>
+  Fee structures are determined by M0 and bridge providers. Check current fee schedules before minting or burning.
+</Info>
+
+## Contract Address
+
+mantraUSD smart contract on MANTRA Chain:
+
+**Address:** `0xd2b95283011E47257917770D28Bb3EE44c849f6F`
+
+[View Contract on Blockscout](https://blockscout.mantrascan.io/address/0xd2b95283011E47257917770D28Bb3EE44c849f6F?tab=contract_code)
+
+<Info>
+  Remember that mantraUSD is an extension of $M and relies on M0's infrastructure. For detailed technical information about minting and burning operations, refer to the [M0 documentation](https://docs.m0.org).
+</Info>
+
+## Learn More
+
+- [How It Works](/how-it-works/overview) - Overview of mantraUSD architecture
+- [Collateralization Dashboard](https://dashboard.m0.org/stablecoins/mantrausd) - Real-time collateralization data
+- [Integration Guide](/integration/overview) - Developer integration examples
+- [M0 Documentation](https://docs.m0.org) - Technical details about M0's minting and burning
+

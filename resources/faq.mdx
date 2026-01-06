@@ -1,0 +1,116 @@
+---
+title: Frequently Asked Questions
+---
+
+## General Questions
+
+### What is mantraUSD?
+
+mantraUSD is an ecosystem stablecoin built on **M0's universal stablecoin platform**, designed to become the primary medium of exchange for tokenized Real World Assets (RWAs). As an extension of **$M** (M0's base stablecoin), mantraUSD inherits M0's security and operational framework. M0 is the same building block used by several of the largest stablecoins (e.g., mUSD), and **all collateralization is handled by M0**.
+
+### What is the contract address?
+
+The mantraUSD smart contract address is:
+
+**`0xd2b95283011E47257917770D28Bb3EE44c849f6F`**
+
+You can view it on [Blockscout](https://blockscout.mantrascan.io/address/0xd2b95283011E47257917770D28Bb3EE44c849f6F?tab=contract_code).
+
+### How is mantraUSD different from other stablecoins?
+
+mantraUSD is specifically designed as the ecosystem stablecoin for the MANTRA ecosystem, built on M0's universal stablecoin platform. Unlike first-generation stablecoins that extract value, mantraUSD distributes rewards derived from U.S. Treasury yield to ecosystem partners who drive adoption. It's an extension of $M from M0, leveraging the same battle-tested infrastructure used by major stablecoins like mUSD.
+
+### Is mantraUSD backed by collateral?
+
+Yes, mantraUSD is fully backed by **short-dated U.S. Treasury Bills** (≤180 days). **All collateralization is handled by M0**, the leading stablecoin provider. The collateral is held in segregated Special Purpose Vehicle (SPV) accounts with regulated custodians. You can also monitor backing status on the [Collateralization Dashboard](https://dashboard.m0.org/stablecoins/mantrausd).
+
+## Technical Questions
+
+### What blockchain is mantraUSD on?
+
+mantraUSD is deployed on **MANTRA Chain**.
+
+### What token standard does mantraUSD use?
+
+mantraUSD implements the ERC-20 standard, with additional custom functionality for minting, burning, and stability mechanisms.
+
+### How do I check my mantraUSD balance?
+
+You can check your balance using:
+- A Web3 wallet (MetaMask, etc.)
+- Block explorers like Blockscout
+- Direct contract interaction
+
+See the [Integration Guide](/integration/overview) for code examples.
+
+### How do I transfer mantraUSD?
+
+You can transfer mantraUSD like any ERC-20 token:
+- Using a Web3 wallet
+- Through smart contract interaction
+- Via DEX swaps
+
+## Minting & Burning
+
+### How do I mint mantraUSD?
+
+mantraUSD operates as an extension of $M from M0. M-denominated assets are locked on Ethereum through M0 Core Protocol, and mantraUSD tokens are minted on MANTRA Chain via bridge technologies. All collateralization is handled by M0, which manages the underlying U.S. Treasury Bills. See the [Minting & Burning](/how-it-works/minting-burning) guide for details.
+
+### How do I burn mantraUSD?
+
+You can burn mantraUSD to redeem the underlying collateral managed by M0. Redemptions follow T+2 settlement timelines (consistent with U.S. Treasury market operations). Direct redemptions are available to authorized Minters meeting KYC/AML requirements. See the [Minting & Burning](/how-it-works/minting-burning) guide.
+
+### What is the collateral backing mantraUSD?
+
+mantraUSD is fully backed by short-dated U.S. Treasury Bills (≤180 days), held in segregated SPV accounts with regulated custodians. All collateralization is handled by M0's infrastructure, which ensures all tokens are always fully backed and redeemable at par.
+
+### Who manages the collateral?
+
+**M0 handles all collateralization** for mantraUSD. M0 is the leading stablecoin provider and the same building block used by several of the largest stablecoins (e.g., mUSD). M0 manages the U.S. Treasury Bills, validator attestations, and all collateral operations.
+
+## Integration
+
+### How do I integrate mantraUSD into my dApp?
+
+See the [Integration Guide](/integration/overview) for detailed instructions and code examples.
+
+### What Web3 libraries are supported?
+
+You can use any Web3 library that supports Ethereum-compatible contracts:
+- ethers.js
+- web3.js
+- Others compatible with EVM
+
+### Where can I find the contract ABI?
+
+The contract ABI is available in the [ABI documentation](/smart-contracts/abi) and can be viewed on [Blockscout](https://blockscout.mantrascan.io/address/0xd2b95283011E47257917770D28Bb3EE44c849f6F?tab=contract_code).
+
+## Security
+
+### Is the contract open source?
+
+Yes, the contract source code is verified and publicly available on Blockscout.
+
+### How do I verify I'm using the correct contract?
+
+Always verify the contract address: `0xd2b95283011E47257917770D28Bb3EE44c849f6F`. Check it on [Blockscout](https://blockscout.mantrascan.io/address/0xd2b95283011E47257917770D28Bb3EE44c849f6F?tab=contract_code) to confirm.
+
+## Support
+
+### Where can I get help?
+
+- Check this [FAQ](/resources/faq) for common questions
+- Follow us on [X](https://x.com/mantraUSD)
+- Review the [documentation](/)
+- Visit [mantraUSD.com](https://mantrausd.com)
+
+### How do I report a bug or security issue?
+
+Contact the team through official channels. For security issues, follow responsible disclosure practices.
+
+## Related Resources
+
+- [Getting Started](/getting-started/quick-start) - New to mantraUSD?
+- [How It Works](/how-it-works/overview) - Understand the mechanics
+- [Integration Guide](/integration/overview) - Developer resources
+

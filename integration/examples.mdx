@@ -1,0 +1,231 @@
+---
+title: Code Examples
+---
+
+## Code Examples
+
+Ready-to-use code examples for integrating mantraUSD into your applications.
+
+## Contract Address
+
+**Address:** `0xd2b95283011E47257917770D28Bb3EE44c849f6F`
+
+[View on Blockscout](https://blockscout.mantrascan.io/address/0xd2b95283011E47257917770D28Bb3EE44c849f6F?tab=contract_code)
+
+## Basic Balance Check
+
+```javascript
+// Using ethers.js
+const { ethers } = require('ethers');
+
+const provider = new ethers.providers.JsonRpcProvider('YOUR_RPC_URL');
+const contractAddress = '0xd2b95283011E47257917770D28Bb3EE44c849f6F';
+const abi = ['function balanceOf(address) view returns (uint256)'];
+
+const contract = new ethers.Contract(contractAddress, abi, provider);
+
+async function checkBalance(address) {
+  const balance = await contract.balanceOf(address);
+  return ethers.utils.formatEther(balance);
+}
+
+// Usage
+checkBalance('0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb').then(console.log);
+```
+
+## Transfer Tokens
+
+```javascript
+const { ethers } = require('ethers');
+
+const provider = new ethers.providers.JsonRpcProvider('YOUR_RPC_URL');
+const wallet = new ethers.Wallet('YOUR_PRIVATE_KEY', provider);
+const contractAddress = '0xd2b95283011E47257917770D28Bb3EE44c849f6F';
+const abi = ['function transfer(address to, uint256 amount) returns (bool)'];
+
+const contract = new ethers.Contract(contractAddress, abi, wallet);
+
+async function transfer(to, amount) {
+  const tx = await contract.transfer(to, ethers.utils.parseEther(amount.toString()));
+  console.log('Transaction hash:', tx.hash);
+  await tx.wait();
+  console.log('Transfer confirmed!');
+}
+
+// Usage
+transfer('0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb', 100);
+```
+
+## Get Total Supply
+
+```javascript
+const { ethers } = require('ethers');
+
+const provider = new ethers.providers.JsonRpcProvider('YOUR_RPC_URL');
+const contractAddress = '0xd2b95283011E47257917770D28Bb3EE44c849f6F';
+const abi = ['function totalSupply() view returns (uint256)'];
+
+const contract = new ethers.Contract(contractAddress, abi, provider);
+
+async function getTotalSupply() {
+  const supply = await contract.totalSupply();
+  return ethers.utils.formatEther(supply);
+}
+
+// Usage
+getTotalSupply().then(supply => {
+  console.log('Total Supply:', supply, 'mantraUSD');
+});
+```
+
+## Listen to Transfer Events
+
+```javascript
+const { ethers } = require('ethers');
+
+const provider = new ethers.providers.JsonRpcProvider('YOUR_RPC_URL');
+const contractAddress = '0xd2b95283011E47257917770D28Bb3EE44c849f6F';
+const abi = [
+  'event Transfer(address indexed from, address indexed to, uint256 value)'
+];
+
+const contract = new ethers.Contract(contractAddress, abi, provider);
+
+// Listen to all transfers
+contract.on('Transfer', (from, to, value, event) => {
+  console.log('Transfer detected:');
+  console.log('From:', from);
+  console.log('To:', to);
+  console.log('Amount:', ethers.utils.formatEther(value), 'mantraUSD');
+  console.log('Block:', event.blockNumber);
+});
+
+// Listen to transfers to a specific address
+const filter = contract.filters.Transfer(null, '0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb');
+contract.on(filter, (from, to, value, event) => {
+  console.log('Received:', ethers.utils.formatEther(value), 'mantraUSD');
+});
+```
+
+## React Hook Example
+
+```javascript
+import { useState, useEffect } from 'react';
+import { ethers } from 'ethers';
+
+const CONTRACT_ADDRESS = '0xd2b95283011E47257917770D28Bb3EE44c849f6F';
+const ABI = [
+  'function balanceOf(address) view returns (uint256)',
+  'function transfer(address to, uint256 amount) returns (bool)',
+];
+
+function useMantraUSD() {
+  const [balance, setBalance] = useState('0');
+  const [account, setAccount] = useState(null);
+  const [contract, setContract] = useState(null);
+  
+  useEffect(() => {
+    async function init() {
+      if (window.ethereum) {
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const accounts = await provider.send('eth_requestAccounts', []);
+        setAccount(accounts[0]);
+        
+        const contractInstance = new ethers.Contract(
+          CONTRACT_ADDRESS,
+          ABI,
+          provider
+        );
+        setContract(contractInstance);
+        
+        const bal = await contractInstance.balanceOf(accounts[0]);
+        setBalance(ethers.utils.formatEther(bal));
+      }
+    }
+    init();
+  }, []);
+  
+  const transfer = async (to, amount) => {
+    if (!contract) return;
+    const signer = contract.provider.getSigner();
+    const contractWithSigner = contract.connect(signer);
+    const tx = await contractWithSigner.transfer(
+      to,
+      ethers.utils.parseEther(amount.toString())
+    );
+    await tx.wait();
+    // Refresh balance
+    const newBalance = await contract.balanceOf(account);
+    setBalance(ethers.utils.formatEther(newBalance));
+  };
+  
+  return { balance, account, transfer };
+}
+
+// Usage in component
+function MyComponent() {
+  const { balance, account, transfer } = useMantraUSD();
+  
+  return (
+    <div>
+      <p>Balance: {balance} mantraUSD</p>
+      <button onClick={() => transfer('0x...', 10)}>
+        Send 10 mantraUSD
+      </button>
+    </div>
+  );
+}
+```
+
+## Node.js Service Example
+
+```javascript
+const { ethers } = require('ethers');
+
+class MantraUSDService {
+  constructor(rpcUrl, privateKey) {
+    this.provider = new ethers.providers.JsonRpcProvider(rpcUrl);
+    this.wallet = new ethers.Wallet(privateKey, this.provider);
+    this.contractAddress = '0xd2b95283011E47257917770D28Bb3EE44c849f6F';
+    this.abi = [
+      'function balanceOf(address) view returns (uint256)',
+      'function transfer(address to, uint256 amount) returns (bool)',
+      'function totalSupply() view returns (uint256)',
+    ];
+    this.contract = new ethers.Contract(
+      this.contractAddress,
+      this.abi,
+      this.wallet
+    );
+  }
+  
+  async getBalance(address) {
+    const balance = await this.contract.balanceOf(address);
+    return ethers.utils.formatEther(balance);
+  }
+  
+  async getTotalSupply() {
+    const supply = await this.contract.totalSupply();
+    return ethers.utils.formatEther(supply);
+  }
+  
+  async transfer(to, amount) {
+    const tx = await this.contract.transfer(
+      to,
+      ethers.utils.parseEther(amount.toString())
+    );
+    return tx.wait();
+  }
+}
+
+// Usage
+const service = new MantraUSDService('YOUR_RPC_URL', 'YOUR_PRIVATE_KEY');
+service.getBalance('0x...').then(console.log);
+```
+
+## Related Resources
+
+- [Web3 Integration](/integration/web3) - Detailed integration guide
+- [Contract ABI](/smart-contracts/abi) - Complete function reference
+- [Security](/smart-contracts/security) - Security information
+
