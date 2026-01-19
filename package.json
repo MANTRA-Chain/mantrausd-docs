@@ -1,0 +1,14 @@
+{
+  "name": "mantrausd-docs",
+  "private": true,
+  "description": "Mintlify documentation site for mantraUSD",
+  "scripts": {
+    "dev": "mint dev",
+    "start": "mint dev"
+  },
+  "devDependencies": {
+    "mint": "^4.2.284"
+  }
+}
+
+

@@ -31,10 +31,17 @@ npm i -g mint
 
 ### Running Locally
 
-Run the development server:
+Run the development server (Mintlify CLI):
 
 ```bash
 mint dev
+```
+
+Or, if you prefer yarn/npm scripts:
+
+```bash
+yarn install
+yarn dev
 ```
 
 View your local preview at `http://localhost:3000`.

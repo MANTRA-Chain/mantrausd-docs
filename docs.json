@@ -92,8 +92,8 @@
   },
   "footer": {
     "socials": {
-      "twitter": "https://twitter.com/MANTRA_Chain",
-      "github": "https://github.com/MANTRA-Chain",
+      "twitter": "https://twitter.com/mantraUSD",
+      "github": "https://github.com/MANTRA-Chain/evm-m-extensions/tree/deploy-mantra-usd",
       "discord": "https://discord.gg/mantra"
     }
   }
