@@ -12,52 +12,80 @@ mantraUSD is an ecosystem stablecoin built on **M0's universal stablecoin platfo
 - **Network**: MANTRA Chain
 - **Explorer**: [View on Blockscout](https://blockscout.mantrascan.io/address/0xd2b95283011E47257917770D28Bb3EE44c849f6F?tab=contract_code)
 
-## Development
+## Tech Stack
 
-This documentation is built with [Mintlify](https://mintlify.com).
+This site is built with [Unmint](https://www.unmint.dev/) — a free, open-source, self-hosted alternative to Mintlify that uses:
+
+- [Next.js](https://nextjs.org) (App Router)
+- [Fumadocs](https://fumadocs.dev/) for MDX content + search
+- [Tailwind CSS](https://tailwindcss.com) v4
+- [MDX](https://mdxjs.com) for content authoring
+
+It is deployed to [Cloudflare Workers](https://workers.cloudflare.com/) via [`@opennextjs/cloudflare`](https://opennext.js.org/cloudflare).
+
+## Local Development
 
 ### Prerequisites
 
-- Node.js (v14 or higher)
-- npm or yarn
+- Node.js 20+
+- npm
 
-### Installation
-
-Install the Mintlify CLI:
+### Install
 
 ```bash
-npm i -g mint
+npm install
 ```
 
-### Running Locally
-
-Run the development server:
+### Run dev server
 
 ```bash
-mint dev
+npm run dev
 ```
 
 View your local preview at `http://localhost:3000`.
 
-### Updating
-
-If your dev environment isn't running, update the CLI:
+### Production build
 
 ```bash
-mint update
+npm run build
+npm start
 ```
 
-## Publishing
+### Tests
 
-Changes are automatically deployed to production when pushed to the main branch (if the GitHub app is installed from the Mintlify dashboard).
+```bash
+npm test
+```
+
+## Deployment (Cloudflare Workers)
+
+The site is deployed to Cloudflare Workers using OpenNext.
+
+### Preview locally with Workers runtime
+
+```bash
+npm run preview:worker
+```
+
+### Deploy
+
+```bash
+npm run deploy:worker
+```
+
+Configuration lives in [`wrangler.jsonc`](./wrangler.jsonc) and [`open-next.config.ts`](./open-next.config.ts).
 
 ## Documentation Structure
+
+Source content lives under [`content/docs/`](./content/docs):
 
 - **Getting Started**: Introduction and quick start guides
 - **How It Works**: Stability mechanisms, minting/burning, collateral
 - **Smart Contracts**: Contract address, ABI, security information
 - **Integration**: Developer guides and code examples
 - **Resources**: Whitepaper, FAQ, useful links
+
+The sidebar/section ordering is configured in [`content/docs/meta.json`](./content/docs/meta.json), and global site/theme configuration lives in [`lib/theme-config.ts`](./lib/theme-config.ts).
 
 ## Contributing
 
@@ -72,4 +100,3 @@ MIT License
 - [mantraUSD Website](https://mantrausd.com)
 - [MANTRA Chain](https://mantrachain.io)
 - [Discord Community](https://discord.gg/mantra)
-

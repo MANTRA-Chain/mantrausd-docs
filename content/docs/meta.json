@@ -1,0 +1,22 @@
+{
+  "title": "Learn About mantraUSD",
+  "pages": [
+    "index",
+    "---Get Started---",
+    "getting-started/quick-start",
+    "getting-started/checking-balance",
+    "---How It Works---",
+    "how-it-works/overview",
+    "how-it-works/minting-burning",
+    "---Smart Contracts---",
+    "smart-contracts/abi",
+    "smart-contracts/security",
+    "---Integration---",
+    "integration/overview",
+    "integration/web3",
+    "integration/examples",
+    "---Resources---",
+    "resources/whitepaper",
+    "resources/faq"
+  ]
+}

@@ -1,0 +1,46 @@
+// Cloudflare Workers configuration for the Unmint Next.js app deployed via @opennextjs/cloudflare.
+// See: https://opennext.js.org/cloudflare/get-started
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "mantrausd-docs",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2025-04-01",
+  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  "assets": {
+    "binding": "ASSETS",
+    "directory": ".open-next/assets"
+  },
+  "observability": {
+    "enabled": true
+  },
+  "env": {
+    "prod": {
+      "name": "mantrausd-docs-prod",
+      "workers_dev": false,
+      "preview_urls": false,
+      "vars": {
+        "NODE_ENV": "production"
+      },
+      "routes": [
+        {
+          "pattern": "docs.mantrausd.com",
+           "custom_domain": true
+         }
+      ]
+    },
+    "preview": {
+      "name": "mantrausd-docs",
+      "workers_dev": true,
+      "preview_urls": true,
+      "vars": {
+        "NODE_ENV": "production"
+      },
+      "routes": [
+        {
+          "pattern": "preview.docs.mantrausd.com",
+           "custom_domain": true
+         }
+      ]
+    }
+  }
+}
