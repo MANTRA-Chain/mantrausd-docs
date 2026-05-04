@@ -12,5 +12,35 @@
   },
   "observability": {
     "enabled": true
+  },
+  "env": {
+    "prod": {
+      "name": "mantrausd-docs-prod",
+      "workers_dev": false,
+      "preview_urls": false,
+      "vars": {
+        "NODE_ENV": "production"
+      },
+      "routes": [
+        {
+          "pattern": "docs.mantrausd.com",
+           "custom_domain": true
+         }
+      ]
+    },
+    "preview": {
+      "name": "mantrausd-docs",
+      "workers_dev": true,
+      "preview_urls": true,
+      "vars": {
+        "NODE_ENV": "production"
+      },
+      "routes": [
+        {
+          "pattern": "preview.docs.mantrausd.com",
+           "custom_domain": true
+         }
+      ]
+    }
   }
 }
